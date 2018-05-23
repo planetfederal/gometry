@@ -6,6 +6,8 @@ A review of some oft used geometry libraries and how they'll influence the desig
 - Java Topology Suite: https://github.com/locationtech/jts
 - Turf.js: https://github.com/Turfjs/turf
 - Apache SIS: http://sis.apache.org/
+  - ISO Focused
+  - Feels complex, unintuitive 
 
 ## Design considerations and Desires
 - "Easy things should be easy, hard things should be possible"
