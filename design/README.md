@@ -5,6 +5,7 @@ A review of some oft used geometry libraries and how they'll influence the desig
 - Boost Geometry: https://github.com/boostorg/geometry
 - Java Topology Suite: https://github.com/locationtech/jts
 - Turf.js: https://github.com/Turfjs/turf
+  - Not really a full featured geometry library
 - Apache SIS: http://sis.apache.org/
   - ISO Focused
   - Feels complex, unintuitive 
@@ -18,4 +19,6 @@ A review of some oft used geometry libraries and how they'll influence the desig
 - Easy and native spatial operations
 - New school focus:
   - GeoJSON, GeoPackage over GML/Shapefile
+
+
 
