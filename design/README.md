@@ -14,4 +14,6 @@ A review of some oft used geometry libraries and how they'll influence the desig
 - Easy and native IO 
 - Easy and native spatial comparators
 - Easy and native spatial operations
+- New school focus:
+-- GeoJSON, GeoPackage over GML/Shapefile
 
