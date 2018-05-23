@@ -25,5 +25,67 @@ A review of some oft used geometry libraries and how they'll influence the desig
   - GeoProtobuf formats?
   - Support for GPU powered computation?
 
+## Status ##
 
+### Algorithm ###
+
+### Densify ###
+
+### Dissolve ###
+
+### Edge Graph ###
+
+### Geom ###
+
+- [x] Coordinate
+- [] CoordinateArray
+- [] CoordinateFilter
+- [] CoordinateList
+- [] Dimension
+- [] Envelope
+- [] Geometry
+- [] GeometryCollection
+- [] IntersectionMatrix
+- [] LineSegment
+- [] LineString
+- [] Lineal
+- [] LinearRing
+- [] Location
+- [] MultiLineString
+- [] MultiPoint
+- [] MultiPolygon
+- [] OctagonalEnvelope
+- [] Point
+- [] Polygon
+- [] Polygonal
+- [] PrecisionModel
+- [] Puntal
+- [] TopologyException
+- [] Triangle
+
+### Geom Graph ###
+
+### Index ###
+
+### IO ###
+
+### Linear Ref ###
+
+### Math ###
+
+### Noding ###
+
+### Operation ###
+
+### Planar Graph ###
+
+### Precision ###
+
+### Shape ###
+
+### Simplify ###
+
+## Triangulate ###
+
+### Util ###
 

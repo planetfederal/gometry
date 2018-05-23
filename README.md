@@ -1,2 +1,4 @@
-# gometry
-The Go Geometry Library 
+# Gometry
+
+The Go Geometry Library
+
