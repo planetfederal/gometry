@@ -1,3 +1,9 @@
-#Design
+# Design
+A review of some oft used geometry libraries and how they'll influence the design of this one
 
-We should do some....
+## Existing Libraries 
+- Boost Geometry [https://github.com/boostorg/geometry]
+- Java Topology Suite
+- Turf.js 
+- Apache SIS 
+
