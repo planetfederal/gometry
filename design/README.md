@@ -38,30 +38,30 @@ A review of some oft used geometry libraries and how they'll influence the desig
 ### Geom ###
 
 - [x] Coordinate
-- [] CoordinateArray
-- [] CoordinateFilter
-- [] CoordinateList
-- [] Dimension
-- [] Envelope
-- [] Geometry
-- [] GeometryCollection
-- [] IntersectionMatrix
-- [] LineSegment
-- [] LineString
-- [] Lineal
-- [] LinearRing
-- [] Location
-- [] MultiLineString
-- [] MultiPoint
-- [] MultiPolygon
-- [] OctagonalEnvelope
-- [] Point
-- [] Polygon
-- [] Polygonal
-- [] PrecisionModel
-- [] Puntal
-- [] TopologyException
-- [] Triangle
+- [ ] CoordinateArray
+- [ ] CoordinateFilter
+- [ ] CoordinateList
+- [ ] Dimension
+- [ ] Envelope
+- [ ] Geometry
+- [ ] GeometryCollection
+- [ ] IntersectionMatrix
+- [ ] LineSegment
+- [ ] LineString
+- [ ] Lineal
+- [ ] LinearRing
+- [ ] Location
+- [x] MultiLineString
+- [x] MultiPoint
+- [x] MultiPolygon
+- [ ] OctagonalEnvelope
+- [x] Point
+- [x] Polygon
+- [ ] Polygonal
+- [ ] PrecisionModel
+- [ ] Puntal
+- [ ] TopologyException
+- [ ] Triangle
 
 ### Geom Graph ###
 
