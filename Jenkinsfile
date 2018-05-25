@@ -17,14 +17,14 @@ node {
 
       stage('Test 1.9') {
         sh """
-          docker run -v /code:/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry golang:1.9-alpine3.7 go test -v ./...'
+          docker run -v /code:/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry golang:1.9-alpine3.7 go test -v ./...
           """
       }
 
 
       stage('Test 1.10') {
         sh """
-          docker run -v /code:/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry golang:1.10-alpine3.7 go test -v ./...'
+          docker run -v /code:/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry golang:1.10-alpine3.7 go test -v ./...
           """
       }
 
