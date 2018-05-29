@@ -5,7 +5,7 @@
  */
 
 node {
-  withCredentials([string(credentialsId: 'boundlessgeoadmin-token', variable: 'GITHUB_TOKEN'), string(credentialsId: 'sonar-jenkins-pipeline-token', variable: 'SONAR_TOKEN')]) {
+  withCredentials([string(credentialsId: 'boundlessgeoadmin-token', variable: 'GITHUB_TOKEN'), string(credentialsId: 'sonar-jenkins-pipeline-token', variable: 'SONAR_TOKEN'), string(credentialsId: 'QUAY_SECRET', variable: 'QUAY_SECRET')]) {
 
     currentBuild.result = "SUCCESS"
 
