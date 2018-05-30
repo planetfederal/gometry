@@ -17,14 +17,14 @@ node {
 
       stage('Test 1.9') {
         sh """
-          docker run -v /code:/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry quay.io/boundlessgeo/gpkg:golang go test -v ./...
+          docker run -v \$(pwd -P):/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry quay.io/boundlessgeo/gpkg:golang go test ./...
           """
       }
 
 
       stage('Test 1.10') {
         sh """
-          docker run -v /code:/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry quay.io/boundlessgeo/gpkg:golang go test -v ./...
+          docker run -v \$(pwd -P):/go/src/github.com/boundlessgeo/gometry -w /go/src/github.com/boundlessgeo/gometry quay.io/boundlessgeo/gpkg:golang -c 'dep ensure; go test -v ./...''
           """
       }
 
