@@ -2,9 +2,9 @@ package gpkg
 
 type SpatialReferenceSystem struct {
 	SrsName                string `gorm:"type:TEXT;not null"`
-	SrsID                  int32  `gorm:"type:INTEGER;not null;PRIMARY_KEY"`
+	SrsID                  int    `gorm:"type:INTEGER;not null;PRIMARY_KEY"`
 	Organization           string `gorm:"type:TEXT;not null"`
-	OrganizationCoordsysID int32  `gorm:"type:INTEGER;not null"`
+	OrganizationCoordsysID int    `gorm:"type:INTEGER;not null"`
 	Definition             string `gorm:"type:TEXT;not null"`
 	Description            string `gorm:"type:TEXT"`
 }
