@@ -12,3 +12,7 @@ type GeometryColumn struct {
 func (GeometryColumn) TableName() string {
 	return "gpkg_geometry_columns"
 }
+
+func (g *Geopackage) AddGeometryColumn(gc GeometryColumn) error {
+	return g.db.Create(&gc).Error
+}

@@ -25,34 +25,20 @@ func (Content) TableName() string {
 	return "gpkg_contents"
 }
 
-// func (g *Geopackage) Contents() []Content {
-// 	qry := fmt.Sprintf("SELECT * FROM %s", contentsTableName)
-// 	var contents []Content
-// 	rows, err := g.db.Query(qry)
-// 	if err != nil {
-// 		log.Printf(err.Error())
-// 		return contents
-// 	}
-// 	for rows.Next() {
-// 		var content Content
-// 		err := rows.Scan(&content)
-// 		if err != nil {
-// 			log.Printf(err.Error())
-// 			break
-// 		}
-// 		contents = append(contents, content)
-// 	}
-// 	return contents
-// }
+func (g *Geopackage) AddContent(c Content) error {
+	return g.db.Create(c).Error
+}
 
-// func (g *Geopackage) Content(tableName string) Content {
-// 	qry := fmt.Sprintf("SELECT * FROM %s WHERE table_name = %s", contentsTableName, tableName)
-// 	var content Content
-// 	row := g.db.QueryRow(qry)
-// 	err := row.Scan(&content)
-// 	if err != nil {
-// 		log.Print(err.Error())
-// 		return
+func (g *Geopackage) ModifyContent(c Content) error {
+	return g.db.Save(&c).Error
+}
 
-// 	return content
-// }
+func (g *Geopackage) FindContent(tableName string) Content {
+	var c Content
+	g.db.First(&c, tableName)
+	return c
+}
+
+func (g *Geopackage) RemoveContent(tableName string) error {
+	return g.db.Delete(&Content{TableNam: tableName}).Error
+}
