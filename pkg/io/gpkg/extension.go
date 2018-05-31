@@ -1,7 +1,7 @@
 package gpkg
 
 type Extension struct {
-	TableNam      string `gorm:"type:TEXT"`
+	TableNam      string `gorm:"column:table_name;type:TEXT"`
 	ColumnName    string `gorm:"type:TEXT"`
 	ExtensionName string `gorm:"type:TEXT;not null"`
 	Definition    string `gorm:"type:TEXT;not null"`
