@@ -22,31 +22,28 @@ func TestExtension(t *testing.T) {
 		Scope:         "test_scope",
 	}
 
-	g.db.Create(&ext)
+	if err := g.AddExtension(ext); err != nil {
+		assert.Error(t, err)
+	}
 
-	var ext2 Extension
-	g.db.Where("table_name = ?", ext.TableNam).First(&ext2)
+	ext2 := g.FindExtension(ext.ExtensionName)
 	assert.Equal(t, "test_tablename", ext2.TableNam)
 	assert.Equal(t, "test_columnname", ext2.ColumnName)
 	assert.Equal(t, "test_extensionname", ext2.ExtensionName)
 
 	ext2.Definition = "Test Definition"
-	g.db.Model(&ext2).Where("table_name = ?", ext2.TableNam).Updates(ext2)
-	if g.db.Error != nil {
-		t.Error(g.db.Error)
-		return
+	if err = g.ModifyExtension(ext2); err != nil {
+		assert.Error(t, err)
 	}
 
-	var ext3 Extension
-	g.db.Where("table_name = ?", ext2.TableNam).First(&ext3)
+	ext3 := g.FindExtension(ext2.ExtensionName)
 	assert.Equal(t, ext2.Definition, ext3.Definition)
+	if err = g.RemoveExtension(ext3.ExtensionName); err != nil {
+		assert.Error(t, err)
+	}
 
-	g.db.Delete(&ext3)
-
-	var ext4 Extension
-	g.db.Where("table_name = ?", ext2.TableNam).First(&ext4)
+	ext4 := g.FindExtension(ext2.ExtensionName)
 	assert.Equal(t, "", ext4.TableNam)
-
 	g.Close()
 	os.Remove("/tmp/extension_test.db")
 }
