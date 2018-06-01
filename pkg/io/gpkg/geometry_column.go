@@ -18,7 +18,7 @@ func (g *Geopackage) AddGeometryColumn(gc GeometryColumn) error {
 }
 
 func (g *Geopackage) ModifyGeometryColumn(gc GeometryColumn) error {
-	return g.db.Model(&gc).Where("table_name = ?", gc.TableName).Updates(&gc).Error
+	return g.db.Model(&gc).Where("table_name = ?", gc.TableNam).Updates(gc).Error
 }
 
 func (g *Geopackage) FindGeometryColumn(tableName string) GeometryColumn {
