@@ -1,14 +1,13 @@
 package gpkg
 
 import (
-	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGeometryColumn(t *testing.T) {
-	g, err := NewGeopackage("/tmp/geometrycolumn_test.db")
+	g, err := NewGeopackage(GeopackageTestFileName)
 	if err != nil {
 		t.Error(err)
 	}
@@ -45,5 +44,4 @@ func TestGeometryColumn(t *testing.T) {
 	assert.Equal(t, "", gc4.TableNam)
 
 	g.Close()
-	os.Remove("/tmp/geometrycolumn_test.db")
 }

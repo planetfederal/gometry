@@ -7,7 +7,7 @@ import (
 )
 
 func TestSRS(t *testing.T) {
-	g, err := NewGeopackage("/tmp/srs_test.db")
+	g, err := NewGeopackage(GeopackageTestFileName)
 	if err != nil {
 		t.Error(err)
 		return

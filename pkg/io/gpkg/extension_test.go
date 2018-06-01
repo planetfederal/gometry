@@ -8,7 +8,7 @@ import (
 )
 
 func TestExtension(t *testing.T) {
-	g, err := NewGeopackage("/tmp/extension_test.db")
+	g, err := NewGeopackage(GeopackageTestFileName)
 	if err != nil {
 		t.Error(err)
 		return

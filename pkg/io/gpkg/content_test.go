@@ -1,7 +1,6 @@
 package gpkg
 
 import (
-	"os"
 	"testing"
 	"time"
 
@@ -9,7 +8,7 @@ import (
 )
 
 func TestContents(t *testing.T) {
-	g, err := NewGeopackage("/tmp/test_contents.db")
+	g, err := NewGeopackage(GeopackageTestFileName)
 	if err != nil {
 		t.Error(err)
 	}
@@ -51,5 +50,4 @@ func TestContents(t *testing.T) {
 	c4 := g.FindContent(c2.TableNam)
 	assert.Equal(t, "", c4.TableNam)
 	g.Close()
-	os.Remove("/tmp/test_contents.db")
 }
