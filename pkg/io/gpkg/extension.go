@@ -30,8 +30,5 @@ func (g *Geopackage) FindExtension(extName string) Extension {
 }
 
 func (g *Geopackage) RemoveExtension(extName string) error {
-	if err := g.db.Where("extension_name = ?", extName).Delete(Extension{}).Error; err != nil {
-		return err
-	}
-	return nil
+	return g.db.Where("extension_name = ?", extName).Delete(Extension{}).Error
 }

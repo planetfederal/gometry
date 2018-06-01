@@ -16,3 +16,17 @@ func (GeometryColumn) TableName() string {
 func (g *Geopackage) AddGeometryColumn(gc GeometryColumn) error {
 	return g.db.Create(&gc).Error
 }
+
+func (g *Geopackage) ModifyGeometryColumn(gc GeometryColumn) error {
+	return g.db.Model(&gc).Where("table_name = ?", gc.TableName).Updates(&gc).Error
+}
+
+func (g *Geopackage) FindGeometryColumn(tableName string) GeometryColumn {
+	var gc GeometryColumn
+	g.db.First(&gc, "table_name = ?", tableName)
+	return gc
+}
+
+func (g *Geopackage) RemoveGeometryColumn(tableName string) error {
+	return g.db.Where("table_name = ?", tableName).Delete(GeometryColumn{}).Error
+}
