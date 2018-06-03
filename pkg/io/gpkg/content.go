@@ -42,3 +42,21 @@ func (g *Geopackage) FindContent(tableName string) Content {
 func (g *Geopackage) RemoveContent(tableName string) error {
 	return g.db.Delete(&Content{TableNam: tableName}).Error
 }
+
+func (g *Geopackage) AllContents() []Content {
+	var cs []Content
+	g.db.Find(&cs)
+	return cs
+}
+
+func (g *Geopackage) RasterContents() []Content {
+	var cs []Content
+	g.db.Find(&cs, "data_type = ?", "tiles")
+	return cs
+}
+
+func (g *Geopackage) FeatureContents() []Content {
+	var cs []Content
+	g.db.Find(&cs, "data_type = ?", "features")
+	return cs
+}
