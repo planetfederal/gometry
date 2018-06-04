@@ -1,12 +1,20 @@
 package gpkg
 
 import (
+	"time"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 type Geopackage struct {
 	db *gorm.DB
+}
+
+type GeopackageContent interface {
+	TableName() string
+	GeomColumnName() string
+	SrsId() int32
 }
 
 func NewGeopackage(filename string) (*Geopackage, error) {
@@ -23,6 +31,33 @@ func NewGeopackage(filename string) (*Geopackage, error) {
 	db.AutoMigrate(&SpatialReferenceSystem{})
 
 	return &Geopackage{db}, nil
+}
+
+func (g *Geopackage) AddFeatureTable(model GeopackageContent) error {
+	err := g.db.AutoMigrate(model).Error
+	if err != nil {
+		return err
+	}
+	return g.addContentTable(model, "features")
+}
+
+func (g *Geopackage) AddTileTable(model GeopackageContent) error {
+	err := g.db.AutoMigrate(model).Error
+	if err != nil {
+		return err
+	}
+	return g.addContentTable(model, "tiles")
+}
+
+func (g *Geopackage) addContentTable(model GeopackageContent, dataType string) error {
+	c := Content{
+		TableNam:   model.TableName(),
+		DataType:   dataType,
+		Identifier: model.TableName(),
+		LastChange: time.Now(),
+		SrsId:      model.SrsId(),
+	}
+	return g.AddContent(c)
 }
 
 // func (g *Geopackage) initializeSpatialMetadata() error {
