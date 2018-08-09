@@ -14,6 +14,10 @@ func NewPolygonFromArray(coords [][][3]float64) *Polygon {
 	return &Polygon{shell, holes}
 }
 
+func NewPolygonFromBBOX(minLat, minLon, maxLat, maxLon float64) *Polygon {
+	return NewPolygonFromArray([][][3]float64{{{minLon, minLat, 0.0}, {minLon, maxLat, 0.0}, {maxLon, maxLat, 0.0}, {maxLon, minLat, 0.0}}})
+}
+
 func (p Polygon) Envelope() *Envelope {
 	e := &Envelope{}
 	for _, c := range p.Shell.Coordinates {
