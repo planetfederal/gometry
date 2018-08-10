@@ -63,5 +63,5 @@ func TestFeatureCollectionJSON(t *testing.T) {
 	f2 := Feature{ID: "2", Properties: pr2, Geometry: pt2}
 	fs := &FeatureCollection{[]*Feature{&f, &f2}}
 	bs, _ := Marshal(fs)
-	assert.Equal(t, `{"type":"FeatureCollection","features":[{"type":"Feature":"id":"1","geometry":{"type":"Point","coordinates":[0,0,0]},"properties":{"foo":2}},{"type":"Feature":"id":"2","geometry":{"type":"Point","coordinates":[0,0,0]},"properties":{"boo":3}}]}`, string(bs))
+	assert.Equal(t, `{"type":"FeatureCollection","features":[{"type":"Feature","id":"1","geometry":{"type":"Point","coordinates":[0,0,0]},"properties":{"foo":2}},{"type":"Feature","id":"2","geometry":{"type":"Point","coordinates":[0,0,0]},"properties":{"boo":3}}]}`, string(bs))
 }
