@@ -51,7 +51,7 @@ func TestFeatureJSON(t *testing.T) {
 	pr := map[string]interface{}{"foo": 2}
 	f := &Feature{ID: "1", Properties: pr, Geometry: pt}
 	bs, _ := Marshal(f)
-	assert.Equal(t, `{"type":"Feature":"id":"1","geometry":{"type":"Point","coordinates":[0,0,0]},"properties":{"foo":2}}`, string(bs))
+	assert.Equal(t, `{"type":"Feature","id":"1","geometry":{"type":"Point","coordinates":[0,0,0]},"properties":{"foo":2}}`, string(bs))
 }
 
 func TestFeatureCollectionJSON(t *testing.T) {

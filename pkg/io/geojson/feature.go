@@ -17,7 +17,7 @@ type FeatureCollection struct {
 }
 
 func marshalFeature(f *Feature) ([]byte, error) {
-	gj := []byte(`{"type":"Feature":"id":"`)
+	gj := []byte(`{"type":"Feature","id":"`)
 	gj = append(gj, f.ID...)
 	gj = append(gj, `","geometry":`...)
 	geom, _ := Marshal(f.Geometry)
