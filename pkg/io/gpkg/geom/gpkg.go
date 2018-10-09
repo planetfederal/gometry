@@ -1,5 +1,7 @@
 package geom
 
+import "github.com/boundlessgeo/gometry/pkg/io/wkb"
+
 type GeoPackageBinaryHeader struct {
 	magic    []byte
 	version  byte
@@ -10,5 +12,5 @@ type GeoPackageBinaryHeader struct {
 
 type StandardGeoPackageBinary struct {
 	header   GeoPackageBinaryHeader
-	geometry WKBGeometry
+	geometry wkb.WKBGeometry
 }
