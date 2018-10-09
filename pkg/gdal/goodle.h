@@ -1,0 +1,1 @@
+char *Info(char *fname);
