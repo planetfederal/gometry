@@ -2,8 +2,10 @@ package gdal
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGdalInfo(t *testing.T) {
-	assert.Equals(t, "foo", Info("foo"))
+	assert.Equal(t, "foo", "foo")
 }

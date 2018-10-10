@@ -3,12 +3,15 @@ jobs:
   build:
     working_directory: /go/src/github.com/boundlessgeo/gometry
     docker:
-      - image: circleci/golang:1.10
+      - image: quay.io/boundlessgeo/gdal-go-alpine
     environment:
       TEST_RESULTS: /tmp/test-results
+      PKG_CONFIG_PATH: /app/lib/pkgconfig
+      LD_LIBRARY_PATH: /app/lib
     steps:
       - checkout
-      - run: mkdir -p $TEST_RESULTS
+      - run: apk add --no-cache build-base git
       - run: go get -u github.com/golang/dep/cmd/dep
       - run: dep ensure
+      - run: echo $PKG_CONFIG_PATH
       - run: go test -v ./...
