@@ -13,4 +13,7 @@ func TestGdalInfo(t *testing.T) {
 		assert.Fail(t, err.Error())
 	}
 	assert.Equal(t, fname, gir.Description)
+	assert.Equal(t, "GTiff", gir.DriverShortName)
+	assert.Equal(t, "GeoTIFF", gir.DriverLongName)
+	assert.NotEmpty(t, gir.Files)
 }
