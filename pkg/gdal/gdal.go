@@ -4,7 +4,6 @@ package gdal
 // #cgo pkg-config: gdal
 // #cgo pkg-config: json-c
 // #include "goodle.h"
-// #include "ogr.h"
 import "C"
 
 import (
