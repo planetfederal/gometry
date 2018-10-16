@@ -1,7 +1,10 @@
 package gdal
 
+// #cgo CXXFLAGS: -std=c++11
 // #cgo pkg-config: gdal
+// #cgo pkg-config: json-c
 // #include "goodle.h"
+// #include "ogr.h"
 import "C"
 
 import (
@@ -21,9 +24,9 @@ type GDALInfoResponse struct {
 }
 
 //Info takes a filename can calls GDAL Info using CGo
-func Info(filename string) (*GDALInfoResponse, error) {
+func GDALInfo(filename string) (*GDALInfoResponse, error) {
 	val := C.CString(filename)
-	out, err := C.Info(val)
+	out, err := C.GDALInfoJSONString(val)
 	if err != nil {
 		return nil, err
 	}

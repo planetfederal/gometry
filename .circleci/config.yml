@@ -6,11 +6,11 @@ jobs:
       - image: quay.io/boundlessgeo/gdal-go-alpine
     environment:
       TEST_RESULTS: /tmp/test-results
-      PKG_CONFIG_PATH: /app/lib/pkgconfig
-      LD_LIBRARY_PATH: /app/lib
+      PKG_CONFIG_PATH: /app/lib/pkgconfig:/usr/lib/pkgconfig
+      LD_LIBRARY_PATH: /app/lib:/usr/lib
     steps:
       - checkout
-      - run: apk add --no-cache build-base git
+      - run: apk add --no-cache build-base git json-c-dev
       - run: go get -u github.com/golang/dep/cmd/dep
       - run: dep ensure
       - run: echo $PKG_CONFIG_PATH
