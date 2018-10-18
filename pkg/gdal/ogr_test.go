@@ -14,7 +14,7 @@ func TestOgrInfo(t *testing.T) {
 		assert.Fail(t, err.Error())
 	}
 	assert.Equal(t, layerName, oir.LayerName)
-	assert.Equal(t, "gpkg", oir.Driver)
-	assert.Equal(t, "fid", oir.Fid)
+	assert.Equal(t, "GPKG", oir.Driver)
+	assert.Equal(t, "gpkg_id", oir.Fid)
 	assert.Equal(t, fname, oir.File)
 }
