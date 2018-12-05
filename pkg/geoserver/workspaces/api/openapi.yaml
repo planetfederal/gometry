@@ -1,0 +1,269 @@
+openapi: 3.0.1
+info:
+  description: A workspace is a grouping of data stores. Similar to a namespace, it is used to group data that is related in some way.
+  title: GeoServer Workspace
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /workspaces:
+    delete:
+      operationId: deleteWorkspaces
+      responses:
+        405:
+          content: {}
+          description: Not permitted
+    get:
+      description: Displays a list of all workspaces on the server. Use the "Accept:" header to specify format or append an extension to the endpoint (example "/workspaces.xml" for XML)
+      operationId: getWorkspaces
+      responses:
+        200:
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/WorkspacesResponse'
+            application/json:
+              example: |
+                {
+                  "workspaces": {
+                  "workspace": [
+                    {
+                     "name": "topp",
+                     "href": "http://localhost:8080/geoserver/rest/workspaces/topp.json"
+                    },
+                    {
+                      "name": "it.geosolutions",
+                      "href": "http://localhost:8080/geoserver/rest/workspaces/it.geosolutions.json"
+                    }
+                  ]
+                  }
+                }
+              schema:
+                $ref: '#/components/schemas/WorkspacesResponse'
+            application/xml:
+              example: |
+                <workspaces>
+                  <workspace>
+                    <name>topp</name>
+                    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp.xml" type="application/xml"/>
+                  </workspace>
+                  <workspace>
+                    <name>it.geosolutions</name>
+                    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/it.geosolutions.xml" type="application/xml"/>
+                  </workspace>
+                </workspaces>
+              schema:
+                $ref: '#/components/schemas/WorkspacesResponse'
+          description: OK
+        401:
+          content: {}
+          description: Unauthorized
+      summary: Get a list of workspaces
+    post:
+      description: Adds a new workspace to the server
+      operationId: postWorkspaces
+      parameters:
+      - description: New workspace will be the used as the default. Allowed values are true or false,  The default value is false.
+        in: query
+        name: default
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+        description: The layer group body information to upload.
+        required: true
+      responses:
+        201:
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+          description: Created
+          headers:
+            Location:
+              description: URL where the newly created workspace can be found
+              schema:
+                type: string
+        401:
+          content: {}
+          description: Unable to add workspace as it already exists
+      summary: add a new workspace to GeoServer
+    put:
+      operationId: putWorkspaces
+      responses:
+        405:
+          content: {}
+          description: Not permitted
+  /workspaces/{workspaceName}:
+    delete:
+      operationId: deleteWorkspace
+      parameters:
+      - description: name of workspace
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+      - description: delete workspace contents (default false)
+        in: query
+        name: recurse
+        schema:
+          type: boolean
+      responses:
+        200:
+          content: {}
+          description: Success workspace deleted
+        403:
+          content: {}
+          description: Workspace or related Namespace is not empty (and recurse not true)
+        404:
+          content: {}
+          description: Workspace doesn't exist
+        405:
+          content: {}
+          description: Can't delete default workspace
+    get:
+      description: Retrieves a single workspace definition. Use the "Accept:" header to specify format or append an extension to the endpoint (example "/workspaces/{workspace}.xml" for XML).
+      operationId: getWorkspace
+      parameters:
+      - description: the name of the workspace to fetch
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/xml:
+              example: |
+                <workspace>
+                  <name>topp</name>
+                  <dataStores>
+                    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp/datastores.xml" type="application/xml"/>
+                  </dataStores>
+                  <coverageStores>
+                    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.xml" type="application/xml"/>
+                  </coverageStores>
+                  <wmsStores>
+                    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.xml" type="application/xml"/>
+                  </wmsStores>
+                </workspace>
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+            application/json:
+              example: |
+                {
+                "workspace": {
+                  "name": "topp",
+                  "dataStores": "http://localhost:8080/geoserver/rest/workspaces/topp/datastores.json",
+                  "coverageStores": "http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.json",
+                  "wmsStores": "http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.json"
+                }
+                }
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+          description: OK
+        404:
+          content: {}
+          description: workspace does not exist
+      summary: Retrieve a layer group
+    post:
+      operationId: postWorkspace
+      responses:
+        405:
+          content: {}
+          description: Forbidden to post to an existing workspace (use PUT)
+    put:
+      description: takes the body of the post and modifies the workspace from it.
+      operationId: putWorkspace
+      parameters:
+      - description: name of workspace
+        in: path
+        name: workspaceName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+        description: The layer group body information to upload.
+        required: true
+      responses:
+        200:
+          content: {}
+          description: Modified
+        404:
+          content: {}
+          description: Workspace not found
+        405:
+          content: {}
+          description: Forbidden to change the name of the workspace
+      summary: Update a workspace
+components:
+  schemas:
+    WorkspaceResponse:
+      example:
+        dataStores: dataStores
+        coverageStores: coverageStores
+        name: name
+        wmsStores: wmsStores
+      properties:
+        name:
+          description: Name of workspace
+          type: string
+        dataStores:
+          description: URL to Datas tores in this workspace
+          type: string
+        coverageStores:
+          description: URL to Coverage stores in this workspace
+          type: string
+        wmsStores:
+          description: URL to WMS stores in this workspace
+          type: string
+      title: Workspace Response
+      type: object
+    WorkspacesResponse:
+      example:
+        workspaces:
+          dataStores: dataStores
+          coverageStores: coverageStores
+          name: name
+          wmsStores: wmsStores
+      properties:
+        workspaces:
+          $ref: '#/components/schemas/WorkspaceResponse'
+      title: Workspaces
+      type: object
+    Workspace:
+      example:
+        name: name
+      properties:
+        name:
+          description: name of the workspace
+          type: string
+      title: Workspace
+      type: object
+      xml:
+        name: workspace
