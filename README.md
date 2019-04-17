@@ -1,4 +1,6 @@
 # Design
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fboundlessgeo%2Fgometry.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fboundlessgeo%2Fgometry?ref=badge_shield)
+
 
 A review of some oft used geometry libraries and how they'll influence the design of this one
 
@@ -96,3 +98,7 @@ A review of some oft used geometry libraries and how they'll influence the desig
 ## Triangulate
 
 ### Util
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fboundlessgeo%2Fgometry.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fboundlessgeo%2Fgometry?ref=badge_large)
